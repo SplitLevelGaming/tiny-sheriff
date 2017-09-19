@@ -1,8 +1,8 @@
-package com.splitlevelgaming.topshogun.desktop;
+package com.splitlevelgaming.tinysheriff.desktop;
 
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
-import com.splitlevelgaming.topshogun.MainGame;
+import com.splitlevelgaming.tinysheriff.MainGame;
 
 public class DesktopLauncher {
 	public static void main (String[] arg) {

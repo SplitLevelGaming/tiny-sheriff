@@ -1,4 +1,4 @@
-package com.splitlevelgaming.topshogun;
+package com.splitlevelgaming.tinysheriff;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
@@ -13,11 +13,13 @@ public class MainGame extends ApplicationAdapter {
 	BitmapFont font;
 	float pixelsPerBottomBlockside;
 	float pixelsPerSideBlockside;
+	Stage activeStage;
 
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
 		font = new BitmapFont();
+		activeStage = new Stage_Test(this);
 	}
 
 	@Override
@@ -34,13 +36,19 @@ public class MainGame extends ApplicationAdapter {
 		batch.begin();
 		batch.setProjectionMatrix(orthoCam.combined);
 		Pen pen = new Pen(batch, pixelsPerBottomBlockside, pixelsPerSideBlockside, screenWidth, screenHeight);
+		activeStage.activate(pen);
 		font.draw(batch, screenWidth + ", " + screenHeight, 0, 15);
 		batch.end();
 	}
 
+//TODO ensure all disposables are disposed of
 	@Override
 	public void dispose () {
 		batch.dispose();
 		font.dispose();
+	}
+
+	public void enterNewStage(Stage newStage){
+		activeStage = newStage;
 	}
 }
