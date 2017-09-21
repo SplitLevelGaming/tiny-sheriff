@@ -13,6 +13,7 @@ public abstract class Stage{
     this.mainGame = mainGame;
     this.props = new ArrayList<Prop>();
     this.background = background;
+    loadInitialProps();
   }
 
   public void activate(Pen pen){
@@ -33,6 +34,16 @@ public abstract class Stage{
     for(int i = 0; i < props.size(); i++){
       props.get(i).activate(pen);
     }
+  }
+
+  protected abstract void loadInitialProps();
+
+  protected void addProp(Prop newProp){
+    props.add(props.size(), newProp);
+  }
+
+  protected void removeProp(Prop propToRemove){
+    props.remove(propToRemove);
   }
 
 }

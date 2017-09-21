@@ -8,4 +8,9 @@ public class Stage_Test extends Stage{
     super(mainGame, new Texture("img_testBackground.jpg"));
   }
 
+  @Override
+  protected void loadInitialProps(){
+
+  }
+
 }
