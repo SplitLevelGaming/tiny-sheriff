@@ -10,7 +10,8 @@ public class Stage_Test extends Stage{
 
   @Override
   protected void loadInitialProps(){
-
+    Prop_Test prop_Test = new Prop_Test(this, 0, 0);
+    addProp(prop_Test);
   }
 
 }
