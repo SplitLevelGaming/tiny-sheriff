@@ -1,4 +1,4 @@
-package com.splitlevelgaming.topshogun;
+package com.splitlevelgaming.tinysheriff;
 
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
