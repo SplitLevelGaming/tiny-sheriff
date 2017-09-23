@@ -5,14 +5,15 @@ import java.util.ArrayList;
 
 public abstract class Stage{
 
-  Texture background;
+  String backgroundTextureName;
   MainGame mainGame;
   ArrayList<Prop> props;
+  Texture background;
 
-  Stage(MainGame mainGame, Texture background){
+  Stage(MainGame mainGame, String backgroundTextureName){
     this.mainGame = mainGame;
     this.props = new ArrayList<Prop>();
-    this.background = background;
+    this.background = mainGame.getTexture(backgroundTextureName);
     loadInitialProps();
   }
 
@@ -44,6 +45,10 @@ public abstract class Stage{
 
   protected void removeProp(Prop propToRemove){
     props.remove(propToRemove);
+  }
+
+  public Texture getTexture(String textureName){
+    return mainGame.getTexture(textureName);
   }
 
 }

@@ -19,6 +19,10 @@ public abstract class Prop{
     stage.removeProp(this);
   }
 
+  protected Texture getTexture(String textureName){
+    return stage.getTexture(textureName);
+  }
+
   protected abstract void update();
 
   protected abstract void render(Pen pen);

@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import java.util.Hashtable;
 
 public class MainGame extends ApplicationAdapter {
 	SpriteBatch batch;
@@ -14,11 +15,13 @@ public class MainGame extends ApplicationAdapter {
 	float pixelsPerBottomBlockside;
 	float pixelsPerSideBlockside;
 	Stage activeStage;
+	Hashtable<String, Texture> textureVault;
 
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
 		font = new BitmapFont();
+		initializeTextureVault();
 		activeStage = new Stage_Test(this);
 	}
 
@@ -31,24 +34,47 @@ public class MainGame extends ApplicationAdapter {
 		OrthographicCamera orthoCam = new OrthographicCamera(screenWidth, screenHeight);
 		orthoCam.position.set(screenWidth / 2, screenHeight / 2, 0);
 		orthoCam.update();
-		Gdx.gl.glClearColor(1, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		batch.begin();
 		batch.setProjectionMatrix(orthoCam.combined);
 		Pen pen = new Pen(batch, pixelsPerBottomBlockside, pixelsPerSideBlockside, screenWidth, screenHeight);
 		activeStage.activate(pen);
 		font.draw(batch, screenWidth + ", " + screenHeight, 0, 15);
+		font.draw(batch, Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory() + "", 0, 30);
 		batch.end();
+		System.gc();
 	}
 
-//TODO ensure all disposables are disposed of
 	@Override
 	public void dispose () {
 		batch.dispose();
 		font.dispose();
+		destroyTextureVault();
 	}
 
 	public void enterNewStage(Stage newStage){
 		activeStage = newStage;
+	}
+
+	public void initializeTextureVault(){
+		textureVault = new Hashtable<String, Texture>();
+		TexturesList temporaryTexturesList = new TexturesList();
+		String texturesStrings[] = temporaryTexturesList.getTextures();
+		for(int i=0; i<texturesStrings.length; i++){
+			Texture vaultInput = new Texture(texturesStrings[i]);
+			textureVault.put(texturesStrings[i], vaultInput);
+		}
+	}
+
+	public void destroyTextureVault(){
+		TexturesList temporaryTexturesList = new TexturesList();
+		String texturesStrings[] = temporaryTexturesList.getTextures();
+		for(int i=0; i<texturesStrings.length; i++){
+			textureVault.get(texturesStrings[i]).dispose();
+		}
+	}
+
+	public Texture getTexture(String textureName){
+		return textureVault.get(textureName);
 	}
 }
