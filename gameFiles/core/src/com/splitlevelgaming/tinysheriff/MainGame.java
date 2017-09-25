@@ -39,8 +39,9 @@ public class MainGame extends ApplicationAdapter {
 		batch.setProjectionMatrix(orthoCam.combined);
 		Pen pen = new Pen(batch, pixelsPerBottomBlockside, pixelsPerSideBlockside, screenWidth, screenHeight);
 		activeStage.activate(pen);
-		font.draw(batch, screenWidth + ", " + screenHeight, 0, 15);
-		font.draw(batch, Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory() + "", 0, 30);
+		//The following lines are here for testing purposes. They should not be uncommented in any PR.
+		//font.draw(batch, screenWidth + ", " + screenHeight, 0, 15);
+		//font.draw(batch, Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory() + "", 0, 30);
 		batch.end();
 		System.gc();
 	}

@@ -19,9 +19,7 @@ public class Stage_Test extends Stage{
 
   @Override
   protected void update(){
-    if(Gdx.input.isKeyPressed(Input.Keys.SPACE)){
-      addProp(new Prop_Test(this, 0, 0));
-    }
+    
   }
 
 }
