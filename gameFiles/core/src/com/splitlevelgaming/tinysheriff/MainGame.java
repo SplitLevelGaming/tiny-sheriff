@@ -8,7 +8,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.controllers.Controller;
-import com.badlogic.gdxl.controller.Controllers;
+import com.badlogic.gdx.controllers.Controllers;
 import java.util.Hashtable;
 
 public class MainGame extends ApplicationAdapter {
@@ -31,8 +31,11 @@ public class MainGame extends ApplicationAdapter {
 	public void render () {
 		//TODO Remove lines below inserted for testing
 		for (Controller controller : Controllers.getControllers()) {
-    	//Gdx.app.log(TAG, controller.getName());
 			System.out.println(controller.getName());
+			for(int i=0; i<100; i++)
+				if(controller.getButton(i))
+					System.out.println(i + " pressed");
+			System.out.println(controller.getAxis(1));
 		}
 		float screenWidth = Gdx.graphics.getWidth();
 		float screenHeight = Gdx.graphics.getHeight();
