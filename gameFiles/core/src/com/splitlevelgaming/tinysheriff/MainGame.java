@@ -18,6 +18,7 @@ public class MainGame extends ApplicationAdapter {
 	float pixelsPerSideBlockside;
 	Stage activeStage;
 	Hashtable<String, Texture> textureVault;
+	ControllerInputHandler[] controllers;
 
 	@Override
 	public void create () {
@@ -25,18 +26,25 @@ public class MainGame extends ApplicationAdapter {
 		font = new BitmapFont();
 		initializeTextureVault();
 		activeStage = new Stage_Test(this);
+		controllers = new ControllerInputHandler[2];
+		try{
+			controllers[0] = new ControllerInputHandler(Controllers.getControllers().get(0));
+			controllers[1] = new ControllerInputHandler(Controllers.getControllers().get(1));
+		}
+		catch (Exception e) {
+			System.out.println("Please connect a second controller!");
+			Gdx.app.exit();
+		}
 	}
 
 	@Override
 	public void render () {
 		//TODO Remove lines below inserted for testing
-		for (Controller controller : Controllers.getControllers()) {
-			System.out.println(controller.getName());
-			for(int i=0; i<100; i++)
-				if(controller.getButton(i))
-					System.out.println(i + " pressed");
-			System.out.println(controller.getAxis(1));
+		if(controllers[0].slowJustPressed){
+			System.out.println("Hit");
 		}
+		//End testing lines
+		//Set up screen view
 		float screenWidth = Gdx.graphics.getWidth();
 		float screenHeight = Gdx.graphics.getHeight();
 		pixelsPerBottomBlockside = screenWidth / 32;
@@ -44,10 +52,16 @@ public class MainGame extends ApplicationAdapter {
 		OrthographicCamera orthoCam = new OrthographicCamera(screenWidth, screenHeight);
 		orthoCam.position.set(screenWidth / 2, screenHeight / 2, 0);
 		orthoCam.update();
+		//Prepare the batch
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		batch.begin();
 		batch.setProjectionMatrix(orthoCam.combined);
 		Pen pen = new Pen(batch, pixelsPerBottomBlockside, pixelsPerSideBlockside, screenWidth, screenHeight);
+		//Update the controller's inputs
+		for(int i = 0; i < controllers.length; i++){
+			controllers[i].refresh();
+		}
+		//Tell stage to begin the step
 		activeStage.activate(pen);
 		//The following lines are here for testing purposes. They should not be uncommented in any PR.
 		//font.draw(batch, screenWidth + ", " + screenHeight, 0, 15);
