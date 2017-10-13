@@ -62,7 +62,7 @@ public class MainGame extends ApplicationAdapter {
 			controllers[i].refresh();
 		}
 		//Tell stage to begin the step
-		activeStage.activate(pen);
+		activeStage.activate(pen, controllers);
 		//The following lines are here for testing purposes. They should not be uncommented in any PR.
 		//font.draw(batch, screenWidth + ", " + screenHeight, 0, 15);
 		//font.draw(batch, Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory() + "", 0, 30);
@@ -101,5 +101,9 @@ public class MainGame extends ApplicationAdapter {
 
 	public Texture getTexture(String textureName){
 		return textureVault.get(textureName);
+	}
+
+	public ControllerInputHandler[] getControllers(){
+		return controllers;
 	}
 }

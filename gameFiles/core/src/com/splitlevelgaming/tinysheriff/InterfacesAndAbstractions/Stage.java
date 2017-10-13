@@ -17,7 +17,7 @@ public abstract class Stage{
     loadInitialProps();
   }
 
-  public void activate(Pen pen){
+  public void activate(Pen pen, ControllerInputHandler[] controllers){
     update();
     render(pen);
     activateProps(pen);
@@ -49,6 +49,10 @@ public abstract class Stage{
 
   public Texture getTexture(String textureName){
     return mainGame.getTexture(textureName);
+  }
+
+  protected ControllerInputHandler[] getControllers(){
+    return mainGame.getControllers();
   }
 
 }
