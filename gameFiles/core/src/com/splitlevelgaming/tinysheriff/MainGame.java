@@ -39,11 +39,6 @@ public class MainGame extends ApplicationAdapter {
 
 	@Override
 	public void render () {
-		//TODO Remove lines below inserted for testing
-		if(controllers[0].slowJustPressed){
-			System.out.println("Hit");
-		}
-		//End testing lines
 		//Set up screen view
 		float screenWidth = Gdx.graphics.getWidth();
 		float screenHeight = Gdx.graphics.getHeight();
