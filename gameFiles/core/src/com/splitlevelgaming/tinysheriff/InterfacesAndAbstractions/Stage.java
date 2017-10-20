@@ -51,4 +51,8 @@ public abstract class Stage{
     return mainGame.getTexture(textureName);
   }
 
+  protected ControllerInputHandler[] getControllers(){
+    return mainGame.getControllers();
+  }
+
 }

@@ -23,6 +23,10 @@ public abstract class Prop{
     return stage.getTexture(textureName);
   }
 
+  protected ControllerInputHandler[] getControllers(){
+    return stage.getControllers();
+  }
+
   protected abstract void update();
 
   protected abstract void render(Pen pen);
