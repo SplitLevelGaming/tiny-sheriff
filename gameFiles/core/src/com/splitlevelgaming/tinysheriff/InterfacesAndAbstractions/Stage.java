@@ -17,7 +17,7 @@ public abstract class Stage{
     loadInitialProps();
   }
 
-  public void activate(Pen pen, ControllerInputHandler[] controllers){
+  public void activate(Pen pen){
     update();
     render(pen);
     activateProps(pen);
