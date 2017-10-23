@@ -27,6 +27,10 @@ public abstract class Prop{
     return stage.getControllers();
   }
 
+  protected void addProp(Prop newProp){
+    stage.addProp(newProp);
+  }
+
   protected abstract void update();
 
   protected abstract void render(Pen pen);
