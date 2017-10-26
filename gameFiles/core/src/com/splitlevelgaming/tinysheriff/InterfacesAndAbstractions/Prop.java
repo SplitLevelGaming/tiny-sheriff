@@ -4,7 +4,7 @@ import com.badlogic.gdx.graphics.Texture;
 
 public abstract class Prop{
 
-  Stage stage;
+  private Stage stage;
 
   Prop(Stage stage){
     this.stage = stage;

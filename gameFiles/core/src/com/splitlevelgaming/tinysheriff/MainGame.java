@@ -12,13 +12,13 @@ import com.badlogic.gdx.controllers.Controllers;
 import java.util.Hashtable;
 
 public class MainGame extends ApplicationAdapter {
-	SpriteBatch batch;
-	BitmapFont font;
-	float pixelsPerBottomBlockside;
-	float pixelsPerSideBlockside;
-	Stage activeStage;
-	Hashtable<String, Texture> textureVault;
-	ControllerInputHandler[] controllers;
+	private SpriteBatch batch;
+	private BitmapFont font;
+	private float pixelsPerBottomBlockside;
+	private float pixelsPerSideBlockside;
+	private Stage activeStage;
+	private Hashtable<String, Texture> textureVault;
+	private ControllerInputHandler[] controllers;
 
 	@Override
 	public void create () {
