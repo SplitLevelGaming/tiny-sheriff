@@ -7,9 +7,7 @@ public class Prop_Test extends Prop{
   long y;
   Texture test_sprite = getTexture("img_badlogic.jpg");
   Prop_Test(Stage stage, long x, long y){
-    super(stage);
-    this.x=x;
-    this.y=y;
+    super(stage, x, y);
   }
 
   @Override

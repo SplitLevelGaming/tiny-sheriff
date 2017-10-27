@@ -5,9 +5,13 @@ import com.badlogic.gdx.graphics.Texture;
 public abstract class Prop{
 
   private Stage stage;
+  long x = 0;
+  long y = 0;
 
-  Prop(Stage stage){
+  Prop(Stage stage, long x, long y){
     this.stage = stage;
+    this.x = x;
+    this.y = y;
   }
 
   public void activate(Pen pen){

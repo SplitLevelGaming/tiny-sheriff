@@ -19,6 +19,7 @@ public class MainGame extends ApplicationAdapter {
 	private Stage activeStage;
 	private Hashtable<String, Texture> textureVault;
 	private ControllerInputHandler[] controllers;
+	private boolean controllersHookedUp = true;
 
 	@Override
 	public void create () {
@@ -33,7 +34,8 @@ public class MainGame extends ApplicationAdapter {
 		}
 		catch (Exception e) {
 			System.out.println("Please connect a second controller!");
-			Gdx.app.exit();
+			controllersHookedUp = false;
+			//Gdx.app.exit();
 		}
 	}
 
@@ -53,9 +55,10 @@ public class MainGame extends ApplicationAdapter {
 		batch.setProjectionMatrix(orthoCam.combined);
 		Pen pen = new Pen(batch, pixelsPerBottomBlockside, pixelsPerSideBlockside, screenWidth, screenHeight);
 		//Update the controller's inputs
-		for(int i = 0; i < controllers.length; i++){
-			controllers[i].refresh();
-		}
+		if(controllersHookedUp)
+			for(int i = 0; i < controllers.length; i++){
+				controllers[i].refresh();
+			}
 		//Tell stage to begin the step
 		activeStage.activate(pen);
 		//The following lines are here for testing purposes. They should not be uncommented in any PR.

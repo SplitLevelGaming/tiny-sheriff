@@ -10,8 +10,8 @@ public class Stage_Test extends Stage{
 
   Stage_Test(MainGame mainGame){
     super(mainGame, "img_testBackground.jpg");
-    setFirstCharacter(new Character_Test(this, 1));
-    setSecondCharacter(new Character_Test(this, 2));
+    setFirstCharacter(new Character_Test(this, 1, 0, 0));
+    setSecondCharacter(new Character_Test(this, 2, 0, 0));
   }
 
   @Override
