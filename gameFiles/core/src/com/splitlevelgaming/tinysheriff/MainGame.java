@@ -33,7 +33,7 @@ public class MainGame extends ApplicationAdapter {
 			controllers[1] = new ControllerInputHandler(Controllers.getControllers().get(1));
 		}
 		catch (Exception e) {
-			System.out.println("Please connect a second controller!");
+			System.out.println("Please connect two controllers!");
 			controllersHookedUp = false;
 			//Gdx.app.exit();
 		}

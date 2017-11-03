@@ -9,4 +9,8 @@ public abstract class Character extends Prop{
     this.playerNumber = playerNumber;
   }
 
+  public ControllerInputHandler getPlayerController(){
+    return getControllers()[playerNumber - 1];
+  }
+
 }

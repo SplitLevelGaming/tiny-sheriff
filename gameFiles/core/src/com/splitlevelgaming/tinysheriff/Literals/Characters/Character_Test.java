@@ -9,7 +9,13 @@ public class Character_Test extends Character{
   }
 
   protected void update(){
-
+    ControllerInputHandler playerController = getPlayerController();
+    if(playerController.getVerticalAxis() > .5){
+      x += playerController.getVerticalAxis();
+    }
+    if(playerController.getHorizontalAxis() > .5){
+      x += playerController.getHorizontalAxis();
+    }
   }
 
   protected void render(Pen pen){

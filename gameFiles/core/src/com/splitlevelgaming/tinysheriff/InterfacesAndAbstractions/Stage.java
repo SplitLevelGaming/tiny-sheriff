@@ -9,8 +9,6 @@ public abstract class Stage{
   private MainGame mainGame;
   private ArrayList<Prop> props;
   private Texture background;
-  private Character playerOne;
-  private Character playerTwo;
 
   Stage(MainGame mainGame, String backgroundTextureName){
     this.mainGame = mainGame;
@@ -55,14 +53,6 @@ public abstract class Stage{
 
   protected ControllerInputHandler[] getControllers(){
     return mainGame.getControllers();
-  }
-
-  public void setFirstCharacter(Character character){
-    playerOne = character;
-  }
-
-  public void setSecondCharacter(Character character){
-    playerTwo = character;
   }
 
 }
