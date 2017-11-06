@@ -5,10 +5,10 @@ import java.util.ArrayList;
 
 public abstract class Stage{
 
-  String backgroundTextureName;
-  MainGame mainGame;
-  ArrayList<Prop> props;
-  Texture background;
+  private String backgroundTextureName;
+  private MainGame mainGame;
+  private ArrayList<Prop> props;
+  private Texture background;
 
   Stage(MainGame mainGame, String backgroundTextureName){
     this.mainGame = mainGame;

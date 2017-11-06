@@ -4,10 +4,14 @@ import com.badlogic.gdx.graphics.Texture;
 
 public abstract class Prop{
 
-  Stage stage;
+  private Stage stage;
+  double x = 0;
+  double y = 0;
 
-  Prop(Stage stage){
+  Prop(Stage stage, double x, double y){
     this.stage = stage;
+    this.x = x;
+    this.y = y;
   }
 
   public void activate(Pen pen){
@@ -25,6 +29,10 @@ public abstract class Prop{
 
   protected ControllerInputHandler[] getControllers(){
     return stage.getControllers();
+  }
+
+  protected void addProp(Prop newProp){
+    stage.addProp(newProp);
   }
 
   protected abstract void update();

@@ -15,11 +15,12 @@ public class Stage_Test extends Stage{
   @Override
   protected void loadInitialProps(){
     addProp(new Prop_Test(this, 0, 0));
+    addProp(new Character_Test(this, 1, 1, 1));
   }
 
   @Override
   protected void update(){
-    
+
   }
 
 }

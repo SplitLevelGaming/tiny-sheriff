@@ -12,13 +12,14 @@ import com.badlogic.gdx.controllers.Controllers;
 import java.util.Hashtable;
 
 public class MainGame extends ApplicationAdapter {
-	SpriteBatch batch;
-	BitmapFont font;
-	float pixelsPerBottomBlockside;
-	float pixelsPerSideBlockside;
-	Stage activeStage;
-	Hashtable<String, Texture> textureVault;
-	ControllerInputHandler[] controllers;
+	private SpriteBatch batch;
+	private BitmapFont font;
+	private double pixelsPerBottomBlockside;
+	private double pixelsPerSideBlockside;
+	private Stage activeStage;
+	private Hashtable<String, Texture> textureVault;
+	private ControllerInputHandler[] controllers;
+	private boolean controllersHookedUp = true;
 
 	@Override
 	public void create () {
@@ -32,8 +33,9 @@ public class MainGame extends ApplicationAdapter {
 			controllers[1] = new ControllerInputHandler(Controllers.getControllers().get(1));
 		}
 		catch (Exception e) {
-			System.out.println("Please connect a second controller!");
-			Gdx.app.exit();
+			System.out.println("Please connect two controllers!");
+			controllersHookedUp = false;
+			//Gdx.app.exit();
 		}
 	}
 
@@ -53,9 +55,10 @@ public class MainGame extends ApplicationAdapter {
 		batch.setProjectionMatrix(orthoCam.combined);
 		Pen pen = new Pen(batch, pixelsPerBottomBlockside, pixelsPerSideBlockside, screenWidth, screenHeight);
 		//Update the controller's inputs
-		for(int i = 0; i < controllers.length; i++){
-			controllers[i].refresh();
-		}
+		if(controllersHookedUp)
+			for(int i = 0; i < controllers.length; i++){
+				controllers[i].refresh();
+			}
 		//Tell stage to begin the step
 		activeStage.activate(pen);
 		//The following lines are here for testing purposes. They should not be uncommented in any PR.
