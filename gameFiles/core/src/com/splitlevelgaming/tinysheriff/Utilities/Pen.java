@@ -8,12 +8,12 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 public class Pen {
 
 	SpriteBatch batch;
-	float pixelsPerBottomBlockside;
-	float pixelsPerSideBlockside;
-	float screenWidth;
-	float screenHeight;
+	double pixelsPerBottomBlockside;
+	double pixelsPerSideBlockside;
+	double screenWidth;
+	double screenHeight;
 
-	Pen (SpriteBatch passedBatch, float passedPixelsPerBottomBlockside, float passedPixelsPerSideBlockside, float passedScreenWidth, float passedScreenHeight) {
+	Pen (SpriteBatch passedBatch, double passedPixelsPerBottomBlockside, double passedPixelsPerSideBlockside, double passedScreenWidth, double passedScreenHeight) {
 		batch = passedBatch;
 		pixelsPerBottomBlockside = passedPixelsPerBottomBlockside;
 		pixelsPerSideBlockside = passedPixelsPerSideBlockside;
@@ -21,15 +21,20 @@ public class Pen {
 		screenHeight = passedScreenHeight;
 	}
 
-	public void draw (Texture texture, float blockX, float blockY, float blockWidth, float blockHeight) {
-		batch.draw(texture, blockX * pixelsPerBottomBlockside, blockY * pixelsPerSideBlockside, blockWidth * pixelsPerBottomBlockside, blockHeight * pixelsPerSideBlockside);
+	public void draw (Texture texture, double blockX, double blockY, double blockWidth, double blockHeight) {
+		batch.draw(
+		texture,
+		(float) blockX * (float) pixelsPerBottomBlockside,
+		 (float) blockY * (float) pixelsPerSideBlockside,
+		  (float) blockWidth * (float) pixelsPerBottomBlockside,
+			 (float) blockHeight * (float) pixelsPerSideBlockside);
 	}
 
-	public float getPixelsPerBottomBlockside(){
+	public double getPixelsPerBottomBlockside(){
 		return pixelsPerBottomBlockside;
 	}
 
-	public float getPixelsPerSideBlockside(){
+	public double getPixelsPerSideBlockside(){
 		return pixelsPerSideBlockside;
 	}
 

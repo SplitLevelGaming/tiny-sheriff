@@ -19,7 +19,7 @@ public class Character_Test extends Character{
   }
 
   protected void render(Pen pen){
-    pen.draw(getTexture("img_badlogic.jpg"), x, y, 1, 1);
+    pen.draw(getTexture("img_sheriff.png"), x, y, 9.66, 21.33);
   }
 
 }

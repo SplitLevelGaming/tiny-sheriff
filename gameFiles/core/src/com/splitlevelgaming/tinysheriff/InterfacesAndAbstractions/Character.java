@@ -4,7 +4,7 @@ public abstract class Character extends Prop{
 
   private int playerNumber;
 
-  Character(Stage stage, int playerNumber, long x, long y){
+  Character(Stage stage, int playerNumber, double x, double y){
     super(stage, x, y);
     this.playerNumber = playerNumber;
   }

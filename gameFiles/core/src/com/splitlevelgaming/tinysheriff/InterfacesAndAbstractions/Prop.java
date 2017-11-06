@@ -5,10 +5,10 @@ import com.badlogic.gdx.graphics.Texture;
 public abstract class Prop{
 
   private Stage stage;
-  long x = 0;
-  long y = 0;
+  double x = 0;
+  double y = 0;
 
-  Prop(Stage stage, long x, long y){
+  Prop(Stage stage, double x, double y){
     this.stage = stage;
     this.x = x;
     this.y = y;

@@ -14,8 +14,8 @@ import java.util.Hashtable;
 public class MainGame extends ApplicationAdapter {
 	private SpriteBatch batch;
 	private BitmapFont font;
-	private float pixelsPerBottomBlockside;
-	private float pixelsPerSideBlockside;
+	private double pixelsPerBottomBlockside;
+	private double pixelsPerSideBlockside;
 	private Stage activeStage;
 	private Hashtable<String, Texture> textureVault;
 	private ControllerInputHandler[] controllers;
