@@ -2,10 +2,10 @@ package com.splitlevelgaming.tinysheriff;
 
 public abstract class Character extends Prop{
 
-  private int playerNumber;
+  protected int playerNumber;
 
-  Character(Stage stage, int playerNumber, double x, double y){
-    super(stage, x, y);
+  Character(Stage stage, int playerNumber, double x, double y, double width, double height){
+    super(stage, x, y, width, height);
     this.playerNumber = playerNumber;
   }
 
