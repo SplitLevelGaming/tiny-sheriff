@@ -55,4 +55,15 @@ public abstract class Stage{
     return mainGame.getControllers();
   }
 
+  public boolean collidesWith(double x, double y, double width, double height, Class target){
+    for(int i = 0; i < props.size(); i++){
+      if(props.get(i).getClass() == target){
+        if(props.get(i).intersects(x, y, width, height)){
+          return true;
+        }
+      }
+    }
+    return false;
+  }
+
 }
