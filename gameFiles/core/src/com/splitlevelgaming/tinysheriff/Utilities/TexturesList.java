@@ -1,26 +1,30 @@
 package com.splitlevelgaming.tinysheriff;
 
 import java.io.File;
+import java.util.ArrayList;
 
 public class TexturesList{
 
-  String textureList[];
+  ArrayList<String> textureList;
 
   TexturesList(){
-    initializeTextureList();
+    pullFilesFromFolder("./");
   }
 
-  private void initializeTextureList(){
-    File folder = new File("./");
+  private void pullFilesFromFolder(String folderName){
+    System.out.println(folderName);
+    File folder = new File(folderName);
     File[] listOfFiles = folder.listFiles();
-    String[] newTextureList = new String[listOfFiles.length];
-    for(int i=0; i<newTextureList.length; i++){
-      newTextureList[i] = listOfFiles[i].getName();
+    textureList = new ArrayList<String>();
+    for(int i=0; i<listOfFiles.length; i++){
+      if(listOfFiles[i].getName().endsWith(".png") || listOfFiles[i].getName().endsWith(".jpg"))
+        textureList.add(folderName + listOfFiles[i].getName());
+      else
+        pullFilesFromFolder(folderName + listOfFiles[i].getName() + "/");
     }
-    textureList = newTextureList;
   }
 
-  public String[] getTextures(){
+  public ArrayList<String> getTextures(){
     return textureList;
   }
 

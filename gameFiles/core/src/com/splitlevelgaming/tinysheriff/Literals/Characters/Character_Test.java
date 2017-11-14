@@ -9,7 +9,7 @@ public class Character_Test extends Character{
   }
 
   protected void render(Pen pen){
-    pen.draw(getTexture("img_sheriff.png"), x, y, width, height);
+    pen.draw(getTexture("img_sheriff"), x, y, width, height);
   }
 
   @Override

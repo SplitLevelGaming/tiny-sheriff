@@ -9,7 +9,7 @@ public class Stage_Test extends Stage{
   Prop test_prop;
 
   Stage_Test(MainGame mainGame){
-    super(mainGame, "img_testBackground.jpg");
+    super(mainGame, "img_testBackground");
   }
 
   @Override

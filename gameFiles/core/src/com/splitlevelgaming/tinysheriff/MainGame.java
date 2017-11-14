@@ -10,6 +10,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.controllers.Controller;
 import com.badlogic.gdx.controllers.Controllers;
 import java.util.Hashtable;
+import java.util.ArrayList;
 
 public class MainGame extends ApplicationAdapter {
 	private SpriteBatch batch;
@@ -65,7 +66,6 @@ public class MainGame extends ApplicationAdapter {
 		//font.draw(batch, screenWidth + ", " + screenHeight, 0, 15);
 		//font.draw(batch, Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory() + "", 0, 30);
 		batch.end();
-		System.gc();
 	}
 
 	@Override
@@ -82,18 +82,26 @@ public class MainGame extends ApplicationAdapter {
 	public void initializeTextureVault(){
 		textureVault = new Hashtable<String, Texture>();
 		TexturesList temporaryTexturesList = new TexturesList();
-		String texturesStrings[] = temporaryTexturesList.getTextures();
-		for(int i=0; i<texturesStrings.length; i++){
-			Texture vaultInput = new Texture(texturesStrings[i]);
-			textureVault.put(texturesStrings[i], vaultInput);
+		ArrayList<String> texturesStrings = temporaryTexturesList.getTextures();
+		for(int i=0; i<texturesStrings.size(); i++){
+			Texture vaultInput = new Texture(texturesStrings.get(i));
+			String filename = texturesStrings.get(i);
+			int cut = filename.indexOf("/");
+			while(cut  > -1){
+				filename = filename.substring(cut + 1);
+				cut = filename.indexOf("/");
+			}
+			filename = filename.substring(0, filename.length() - 4);
+			System.out.println(filename);
+			textureVault.put(filename, vaultInput);
 		}
 	}
 
 	public void destroyTextureVault(){
 		TexturesList temporaryTexturesList = new TexturesList();
-		String texturesStrings[] = temporaryTexturesList.getTextures();
-		for(int i=0; i<texturesStrings.length; i++){
-			textureVault.get(texturesStrings[i]).dispose();
+		ArrayList<String> texturesStrings = temporaryTexturesList.getTextures();
+		for(int i=0; i<texturesStrings.size(); i++){
+			textureVault.get(texturesStrings.get(i)).dispose();
 		}
 	}
 
