@@ -11,11 +11,11 @@ public abstract class Character extends Prop{
 
   protected void update(){
     ControllerInputHandler playerController = getPlayerController();
-    if(playerController.getVerticalAxis() > .5){
-      x += playerController.getVerticalAxis();
+    if(playerController.getVerticalAxis() != 0){
+      y += .2*playerController.getVerticalAxis();
     }
-    if(playerController.getHorizontalAxis() > .5){
-      x += playerController.getHorizontalAxis();
+    if(playerController.getHorizontalAxis() != 0){
+      x += .2*playerController.getHorizontalAxis();
     }
   }
 
