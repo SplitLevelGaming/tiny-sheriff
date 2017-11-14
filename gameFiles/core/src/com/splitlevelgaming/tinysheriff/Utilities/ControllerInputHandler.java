@@ -9,6 +9,7 @@ public class ControllerInputHandler{
   int mediumShotButton = 3;
   int fastShotButton = 1;
   int miscButton = 0;
+  double threshold = 0.2;
   //These will be true if the button was not pressed last step, but is this step
   boolean slowJustPressed;
   boolean mediumJustPressed;
@@ -50,11 +51,17 @@ public class ControllerInputHandler{
   }
 
   public float getVerticalAxis(){
-    return -1*controller.getAxis(verticalAxis);
+    if(Math.abs(controller.getAxis(verticalAxis)) > threshold){
+      return -1*controller.getAxis(verticalAxis);
+    }
+    return 0;
   }
 
   public float getHorizontalAxis(){
-    return controller.getAxis(horizontalAxis);
+    if(Math.abs(controller.getAxis(horizontalAxis)) > threshold){
+      return controller.getAxis(horizontalAxis);
+    }
+    return 0;
   }
 
   public boolean slowShotButtonIsPressed(){
