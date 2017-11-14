@@ -20,7 +20,24 @@ public abstract class Prop{
 
   public void activate(Pen pen){
     update();
+    checkCollisions();
     render(pen);
+  }
+
+  protected void selfDestruct(){
+    stage.removeProp(this);
+  }
+
+  protected Texture getTexture(String textureName){
+    return stage.getTexture(textureName);
+  }
+
+  protected ControllerInputHandler[] getControllers(){
+    return stage.getControllers();
+  }
+
+  protected void addProp(Prop newProp){
+    stage.addProp(newProp);
   }
 
   public boolean intersects(double x, double y, double width, double height){
@@ -46,24 +63,18 @@ public abstract class Prop{
     return false;
   }
 
-  protected void selfDestruct(){
-    stage.removeProp(this);
+  protected boolean collidesWith(Class target){
+    return collidesWith(x, y, target);
   }
 
-  protected Texture getTexture(String textureName){
-    return stage.getTexture(textureName);
-  }
-
-  protected ControllerInputHandler[] getControllers(){
-    return stage.getControllers();
-  }
-
-  protected void addProp(Prop newProp){
-    stage.addProp(newProp);
+  protected boolean collidesWith(double x, double y, Class target){
+    return stage.collidesWith(x, y, this.width, this.height, target);
   }
 
   protected abstract void update();
 
   protected abstract void render(Pen pen);
+
+  protected abstract void checkCollisions();
 
 }

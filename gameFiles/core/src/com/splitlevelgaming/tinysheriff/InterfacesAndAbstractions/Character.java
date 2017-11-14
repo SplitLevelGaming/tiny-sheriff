@@ -9,6 +9,16 @@ public abstract class Character extends Prop{
     this.playerNumber = playerNumber;
   }
 
+  protected void update(){
+    ControllerInputHandler playerController = getPlayerController();
+    if(playerController.getVerticalAxis() > .5){
+      x += playerController.getVerticalAxis();
+    }
+    if(playerController.getHorizontalAxis() > .5){
+      x += playerController.getHorizontalAxis();
+    }
+  }
+
   public ControllerInputHandler getPlayerController(){
     return getControllers()[playerNumber - 1];
   }
