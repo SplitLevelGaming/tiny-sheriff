@@ -9,13 +9,15 @@ public abstract class Prop{
   protected double y = 0;
   protected double width;
   protected double height;
+  protected String activeSprite;
 
-  Prop(Stage stage, double x, double y, double width, double height){
+  Prop(Stage stage, double x, double y, double width, double height, String activeSprite){
     this.stage = stage;
     this.x = x;
     this.y = y;
     this.width = width;
     this.height = height;
+    this.activeSprite = activeSprite;
   }
 
   public void activate(Pen pen){
@@ -78,6 +80,8 @@ public abstract class Prop{
 
   protected abstract void updateSprite();
 
-  protected abstract void render(Pen pen);
+  protected void render(Pen pen){
+    pen.draw(getTexture(activeSprite), x, y, width, height);
+  }
 
 }
