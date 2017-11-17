@@ -92,7 +92,6 @@ public class MainGame extends ApplicationAdapter {
 				cut = filename.indexOf("/");
 			}
 			filename = filename.substring(0, filename.length() - 4);
-			System.out.println(filename);
 			textureVault.put(filename, vaultInput);
 		}
 	}
