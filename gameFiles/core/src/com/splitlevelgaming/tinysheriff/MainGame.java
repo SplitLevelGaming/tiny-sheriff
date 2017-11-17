@@ -18,7 +18,7 @@ public class MainGame extends ApplicationAdapter {
 	private double pixelsPerBottomBlockside;
 	private double pixelsPerSideBlockside;
 	private Stage activeStage;
-	private Hashtable<String, Texture> textureVault;
+	private TextureVault textureVault;
 	private ControllerInputHandler[] controllers;
 	private boolean controllersHookedUp = true;
 
@@ -26,7 +26,7 @@ public class MainGame extends ApplicationAdapter {
 	public void create () {
 		batch = new SpriteBatch();
 		font = new BitmapFont();
-		initializeTextureVault();
+		textureVault = new TextureVault();
 		activeStage = new Stage_Test(this);
 		controllers = new ControllerInputHandler[2];
 		try{
@@ -72,40 +72,15 @@ public class MainGame extends ApplicationAdapter {
 	public void dispose () {
 		batch.dispose();
 		font.dispose();
-		destroyTextureVault();
+		textureVault.dispose();
 	}
 
 	public void enterNewStage(Stage newStage){
 		activeStage = newStage;
 	}
 
-	public void initializeTextureVault(){
-		textureVault = new Hashtable<String, Texture>();
-		TexturesList temporaryTexturesList = new TexturesList();
-		ArrayList<String> texturesStrings = temporaryTexturesList.getTextures();
-		for(int i=0; i<texturesStrings.size(); i++){
-			Texture vaultInput = new Texture(texturesStrings.get(i));
-			String filename = texturesStrings.get(i);
-			int cut = filename.indexOf("/");
-			while(cut  > -1){
-				filename = filename.substring(cut + 1);
-				cut = filename.indexOf("/");
-			}
-			filename = filename.substring(0, filename.length() - 4);
-			textureVault.put(filename, vaultInput);
-		}
-	}
-
-	public void destroyTextureVault(){
-		TexturesList temporaryTexturesList = new TexturesList();
-		ArrayList<String> texturesStrings = temporaryTexturesList.getTextures();
-		for(int i=0; i<texturesStrings.size(); i++){
-			textureVault.get(texturesStrings.get(i)).dispose();
-		}
-	}
-
 	public Texture getTexture(String textureName){
-		return textureVault.get(textureName);
+		return textureVault.getTexture(textureName);
 	}
 
 	public ControllerInputHandler[] getControllers(){
