@@ -24,4 +24,10 @@ public class Prop_Test extends Prop{
   protected void render(Pen pen){
     pen.draw(test_sprite, x, y, 1, 1);
   }
+
+  @Override
+  protected void updateSprite(){
+
+  }
+  
 }

@@ -17,4 +17,9 @@ public class Character_Test extends Character{
 
   }
 
+  @Override
+  protected void updateSprite(){
+    
+  }
+
 }
