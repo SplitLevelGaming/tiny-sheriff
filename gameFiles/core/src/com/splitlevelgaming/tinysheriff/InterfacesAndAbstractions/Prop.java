@@ -21,6 +21,7 @@ public abstract class Prop{
   public void activate(Pen pen){
     update();
     checkCollisions();
+    updateSprite();
     render(pen);
   }
 
@@ -73,8 +74,10 @@ public abstract class Prop{
 
   protected abstract void update();
 
-  protected abstract void render(Pen pen);
-
   protected abstract void checkCollisions();
+
+  protected abstract void updateSprite();
+
+  protected abstract void render(Pen pen);
 
 }
