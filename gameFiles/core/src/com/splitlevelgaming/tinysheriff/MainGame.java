@@ -18,7 +18,7 @@ public class MainGame extends ApplicationAdapter {
 	private double pixelsPerBottomBlockside;
 	private double pixelsPerSideBlockside;
 	private Stage activeStage;
-	private TextureVault textureVault;
+	private AssetVault <Texture> textureVault;
 	private ControllerInputHandler[] controllers;
 	private boolean controllersHookedUp = true;
 
@@ -26,7 +26,14 @@ public class MainGame extends ApplicationAdapter {
 	public void create () {
 		batch = new SpriteBatch();
 		font = new BitmapFont();
-		textureVault = new TextureVault();
+
+		//Build Texture Vault
+		ArrayList<String> textureExtensions = new ArrayList<String>();
+		textureExtensions.add(".png");
+		textureExtensions.add(".jpg");
+		TextureFactory textureFactory = new TextureFactory();
+		textureVault = new AssetVault<Texture>(textureExtensions, textureFactory);
+
 		activeStage = new Stage_Test(this);
 		controllers = new ControllerInputHandler[2];
 		try{
@@ -80,7 +87,7 @@ public class MainGame extends ApplicationAdapter {
 	}
 
 	public Texture getTexture(String textureName){
-		return textureVault.getTexture(textureName);
+		return textureVault.getAsset(textureName);
 	}
 
 	public ControllerInputHandler[] getControllers(){
