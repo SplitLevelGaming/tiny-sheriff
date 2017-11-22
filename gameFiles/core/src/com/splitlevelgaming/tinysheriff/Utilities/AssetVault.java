@@ -10,9 +10,13 @@ public class AssetVault <T extends Disposable> {
 
 private Hashtable<String, T> assets;
 
-public AssetVault(ArrayList<String> extensions, Factory<T> factory){
-  ArrayList<String> directories = pullDirectoriesFromFolder("./", extensions);
+public AssetVault(ArrayList<String> extensions, Factory<T> factory, String startingFolder){
+  ArrayList<String> directories = pullDirectoriesFromFolder(startingFolder, extensions);
   assets = generateFromDirectories(directories, factory);
+}
+
+public AssetVault(ArrayList<String> extensions, Factory<T> factory){
+  this(extensions, factory, "./");
 }
 
 public T getAsset(String assetReference){
