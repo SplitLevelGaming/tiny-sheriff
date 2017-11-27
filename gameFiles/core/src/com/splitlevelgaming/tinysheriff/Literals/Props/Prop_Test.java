@@ -3,8 +3,8 @@ package com.splitlevelgaming.tinysheriff;
 import com.badlogic.gdx.graphics.Texture;
 
 public class Prop_Test extends Prop{
-  Prop_Test(Stage stage, double x, double y){
-    super(stage, x, y, 1, 1, "img_badlogic");
+  Prop_Test(Stage stage, double x, double y, ToolBox toolBox){
+    super(stage, x, y, 1, 1, "img_badlogic", toolBox);
   }
 
   @Override

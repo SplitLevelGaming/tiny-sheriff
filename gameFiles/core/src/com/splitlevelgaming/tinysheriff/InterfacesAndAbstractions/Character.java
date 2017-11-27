@@ -4,8 +4,8 @@ public abstract class Character extends Prop{
 
   protected int playerNumber;
 
-  Character(Stage stage, int playerNumber, double x, double y, double width, double height, String activeSprite){
-    super(stage, x, y, width, height, activeSprite);
+  Character(Stage stage, int playerNumber, double x, double y, double width, double height, String activeSprite, ToolBox toolBox){
+    super(stage, x, y, width, height, activeSprite, toolBox);
     this.playerNumber = playerNumber;
   }
 

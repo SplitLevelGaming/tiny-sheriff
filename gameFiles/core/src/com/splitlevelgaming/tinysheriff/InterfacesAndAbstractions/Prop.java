@@ -10,29 +10,27 @@ public abstract class Prop{
   protected double width;
   protected double height;
   protected String activeSprite;
+  protected ToolBox toolBox;
 
-  Prop(Stage stage, double x, double y, double width, double height, String activeSprite){
+  Prop(Stage stage, double x, double y, double width, double height, String activeSprite, ToolBox toolBox){
     this.stage = stage;
     this.x = x;
     this.y = y;
     this.width = width;
     this.height = height;
     this.activeSprite = activeSprite;
+    this.toolBox = toolBox;
   }
 
-  public void activate(Pen pen){
+  public void activate(){
     update();
     checkCollisions();
     updateSprite();
-    render(pen);
+    render();
   }
 
   protected void selfDestruct(){
     stage.removeProp(this);
-  }
-
-  protected Texture getTexture(String textureName){
-    return stage.getTexture(textureName);
   }
 
   protected ControllerInputHandler[] getControllers(){
@@ -80,8 +78,8 @@ public abstract class Prop{
 
   protected abstract void updateSprite();
 
-  protected void render(Pen pen){
-    pen.draw(getTexture(activeSprite), x, y, width, height);
+  protected void render(){
+    toolBox.draw(activeSprite, x, y, width, height);
   }
 
 }
