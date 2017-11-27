@@ -5,8 +5,8 @@ import com.badlogic.gdx.graphics.Texture;
 public class Prop_Barrier extends Prop{
   private boolean breakable;
 
-  Prop_Barrier(Stage stage, double x, double y, double width, double height, String textureName, boolean breakable){
-    super(stage, x, y, width, height, textureName);
+  Prop_Barrier(Stage stage, double x, double y, double width, double height, String textureName, ToolBox toolBox, boolean breakable){
+    super(stage, x, y, width, height, textureName, toolBox);
     this.breakable = breakable;
   }
 

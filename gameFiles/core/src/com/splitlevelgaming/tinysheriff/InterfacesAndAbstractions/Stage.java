@@ -5,35 +5,37 @@ import java.util.ArrayList;
 
 public abstract class Stage{
 
-  private String backgroundTextureName;
-  private MainGame mainGame;
-  private ArrayList<Prop> props;
-  private Texture background;
+  protected String backgroundTextureName;
+  protected MainGame mainGame;
+  protected ArrayList<Prop> props;
+  protected String background;
+  protected ToolBox toolBox;
 
-  Stage(MainGame mainGame, String backgroundTextureName){
+  Stage(MainGame mainGame, String backgroundTextureName, ToolBox toolBox){
     this.mainGame = mainGame;
+    this.toolBox = toolBox;
     this.props = new ArrayList<Prop>();
-    this.background = mainGame.getTexture(backgroundTextureName);
+    this.background = backgroundTextureName;
     loadInitialProps();
   }
 
-  public void activate(Pen pen){
+  public void activate(){
     update();
-    render(pen);
-    activateProps(pen);
+    render();
+    activateProps();
   }
 
-  protected void render(Pen pen){
-    pen.draw(background, 0, 0, 32, 18);
+  protected void render(){
+    toolBox.draw(background, 0, 0, 32, 18);
   }
 
   protected void update(){
     return;
   }
 
-  protected void activateProps(Pen pen){
+  protected void activateProps(){
     for(int i = 0; i < props.size(); i++){
-      props.get(i).activate(pen);
+      props.get(i).activate();
     }
   }
 
@@ -45,10 +47,6 @@ public abstract class Stage{
 
   protected void removeProp(Prop propToRemove){
     props.remove(propToRemove);
-  }
-
-  public Texture getTexture(String textureName){
-    return mainGame.getTexture(textureName);
   }
 
   protected ControllerInputHandler[] getControllers(){
