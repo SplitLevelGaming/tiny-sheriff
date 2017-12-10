@@ -82,4 +82,8 @@ public abstract class Prop{
     toolBox.draw(activeSprite, x, y, width, height);
   }
 
+  public void timerEnd(String timerName){
+    
+  }
+
 }
