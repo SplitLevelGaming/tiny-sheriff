@@ -5,19 +5,23 @@ public class ToolBox{
   private TextureHandler textureHandler;
   private MusicHandler musicHander;
   private SoundHandler soundHandler;
+  private TimerController timerController;
 
   public ToolBox(){
     musicHander = new MusicHandler();
     textureHandler = new TextureHandler();
     soundHandler = new SoundHandler();
+    timerController = new TimerController();
   }
 
   public void startStep(){
     textureHandler.startStep();
+    timerController.startStep();
   }
 
   public void endStep(){
     textureHandler.endStep();
+    timerController.startStep();
   }
 
   public void dispose(){
@@ -32,6 +36,10 @@ public class ToolBox{
 
   public void playMusic(String musicName){
     musicHander.playMusic(musicName);
+  }
+
+  public void setTimer(Prop calling, String code, int setTime){
+    timerController.setTimer(calling, code, setTime);
   }
 
 
