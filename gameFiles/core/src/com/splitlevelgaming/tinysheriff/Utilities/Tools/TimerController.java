@@ -14,7 +14,7 @@ public class TimerController{
     activeTimers.add(new Timer(parent, code, setTime));
   }
   public void startStep(){
-    for(int i = 0; i < activeTimers; i++){
+    for(int i = 0; i < activeTimers.size(); i++){
       if(!activeTimers.get(i).isTicking()){
         activeTimers.remove(i);
         i--;
@@ -23,7 +23,7 @@ public class TimerController{
   }
 
   public void endStep(){
-    for(int i = 0; i < activeTimers; i++){
+    for(int i = 0; i < activeTimers.size(); i++){
       if(!activeTimers.get(i).isTicking()){
         activeTimers.remove(i);
         i--;
