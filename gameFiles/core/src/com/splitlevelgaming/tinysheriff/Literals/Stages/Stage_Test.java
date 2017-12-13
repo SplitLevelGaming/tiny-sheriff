@@ -23,4 +23,9 @@ public class Stage_Test extends Stage{
 
   }
 
+  @Override
+  public void timerEnd(String code){
+
+  }
+
 }
