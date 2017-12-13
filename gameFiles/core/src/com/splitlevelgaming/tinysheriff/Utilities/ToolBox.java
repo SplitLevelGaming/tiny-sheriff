@@ -1,6 +1,6 @@
 package com.splitlevelgaming.tinysheriff;
 
-public class ToolBox{
+public class ToolBox implements PhysicalReferencer{
 
   private TextureHandler textureHandler;
   private MusicHandler musicHander;
@@ -30,6 +30,10 @@ public class ToolBox{
     soundHandler.dispose();
   }
 
+  public void removePhysicalReferences(Physical physical){
+    timerController.removePhysicalReferences(physical);
+  }
+
   public void draw(String textureName, double x, double y, double width, double height){
     textureHandler.draw(textureName, x, y, width, height);
   }
@@ -41,6 +45,5 @@ public class ToolBox{
   public void setTimer(Prop calling, String code, int setTime){
     timerController.setTimer(calling, code, setTime);
   }
-
 
 }

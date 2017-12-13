@@ -3,7 +3,7 @@ package com.splitlevelgaming.tinysheriff;
 import com.badlogic.gdx.graphics.Texture;
 import java.util.ArrayList;
 
-public abstract class Stage{
+public abstract class Stage extends Physical implements PhysicalReferencer{
 
   protected String backgroundTextureName;
   protected MainGame mainGame;
@@ -45,8 +45,9 @@ public abstract class Stage{
     props.add(props.size(), newProp);
   }
 
-  protected void removeProp(Prop propToRemove){
-    props.remove(propToRemove);
+  public void removePhysicalReferences(Physical physical){
+    props.remove(physical);
+    toolBox.removePhysicalReferences(physical);
   }
 
   protected ControllerInputHandler[] getControllers(){

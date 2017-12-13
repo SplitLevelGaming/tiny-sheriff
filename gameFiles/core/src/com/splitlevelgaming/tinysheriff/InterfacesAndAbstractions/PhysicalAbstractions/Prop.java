@@ -2,7 +2,7 @@ package com.splitlevelgaming.tinysheriff;
 
 import com.badlogic.gdx.graphics.Texture;
 
-public abstract class Prop{
+public abstract class Prop extends Physical{
 
   protected Stage stage;
   protected double x = 0;
@@ -30,7 +30,7 @@ public abstract class Prop{
   }
 
   protected void selfDestruct(){
-    stage.removeProp(this);
+    stage.removePhysicalReferences(this);
   }
 
   protected ControllerInputHandler[] getControllers(){
@@ -83,7 +83,7 @@ public abstract class Prop{
   }
 
   public void timerEnd(String timerName){
-    
+
   }
 
 }
