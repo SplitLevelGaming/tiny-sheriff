@@ -32,16 +32,35 @@ public class TextureHandler{
 	}
 
 	public void draw (String textureName, double blockX, double blockY, double blockWidth, double blockHeight) {
-		Texture texture = getTexture(textureName);
-		if(texture == null){
-			texture = instantiateTexture(textureName);
-		}
-		batch.draw(
-		texture,
-		(float) blockX * (float) pixelsPerBottomBlockside,
-		 (float) blockY * (float) pixelsPerSideBlockside,
-		  (float) blockWidth * (float) pixelsPerBottomBlockside,
-			 (float) blockHeight * (float) pixelsPerSideBlockside);
+		drawComprehensive(textureName, blockX, blockY, blockWidth, blockHeight, false);
+	}
+
+	public void drawReversed(String textureName, double blockX, double blockY, double blockWidth, double blockHeight){
+		drawComprehensive(textureName, blockX, blockY, blockWidth, blockHeight, true);
+	}
+
+	private void drawComprehensive(String textureName,
+		double blockX,
+		double blockY,
+		double blockWidth,
+		double blockHeight,
+		boolean flipx){
+			Texture texture = getTexture(textureName);
+			if(texture == null){
+				texture = instantiateTexture(textureName);
+			}
+			batch.draw(
+				texture,
+				(float) blockX * (float) pixelsPerBottomBlockside,
+				(float) blockY * (float) pixelsPerSideBlockside,
+				(float) blockWidth * (float) pixelsPerBottomBlockside,
+				(float) blockHeight * (float) pixelsPerSideBlockside,
+				0,
+				0,
+				texture.getWidth(),
+				texture.getHeight(),
+				flipx,
+				false);
 	}
 
 	public double getPixelsPerBottomBlockside(){
