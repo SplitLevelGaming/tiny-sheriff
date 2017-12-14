@@ -14,7 +14,7 @@ public class Stage_Test extends Stage{
 
   @Override
   protected void loadInitialProps(){
-    addProp(new Prop_Barrier(this, 0, 0, 2, 2, "img_badlogic", toolBox, true));
+    addProp(new Prop_Test(this, 0, 0, toolBox));
     toolBox.playMusic("music_testMusic");
   }
 

@@ -38,6 +38,10 @@ public class ToolBox implements PhysicalReferencer{
     textureHandler.draw(textureName, x, y, width, height);
   }
 
+  public void drawReversed(String textureName, double x, double y, double width, double height){
+    textureHandler.drawReversed(textureName, x, y, width, height);
+  }
+
   public void playMusic(String musicName){
     musicHander.playMusic(musicName);
   }

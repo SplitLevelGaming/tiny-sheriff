@@ -79,7 +79,17 @@ public abstract class Prop extends Physical{
   protected abstract void updateSprite();
 
   protected void render(){
+    drawMe();
+  }
+
+  protected void drawMe(){
     toolBox.draw(activeSprite, x, y, width, height);
+
+  }
+
+  protected void drawMeReversed(){
+    toolBox.drawReversed(activeSprite, x, y, width, height);
+
   }
 
   public void timerEnd(String timerName){
