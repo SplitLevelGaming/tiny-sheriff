@@ -23,7 +23,6 @@ public class MusicHandler{
 
   public void playMusic(String music){
     stopMusic();
-    System.out.println(directoryKeyTable.size());
     activeSong = Gdx.audio.newMusic(Gdx.files.internal(directoryKeyTable.get(music)));
     activeSong.setLooping(true);
     activeSong.play();

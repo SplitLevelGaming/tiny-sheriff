@@ -7,11 +7,9 @@ import java.util.Hashtable;
 
 public class DirectoryManager{
   public ArrayList<String> pullDirectoriesFromFolder(String folderName, ArrayList<String> extensions){
-    System.out.println(folderName);
     File folder = new File(folderName);
     File[] listOfFiles = folder.listFiles();
     ArrayList<String> retVal = new ArrayList<String>();
-    System.out.println(listOfFiles == null);
     for(int i=0; i<listOfFiles.length; i++){
       boolean matchesExtensions = false;
       for(int j = 0; !matchesExtensions && j < extensions.size(); j++){
@@ -46,10 +44,7 @@ public class DirectoryManager{
 
   public Hashtable<String, String> createDirectoryHash(String startingDirectory, ArrayList<String> fileExtensions){
     Hashtable<String, String> retVal = new Hashtable<String, String>();
-    ArrayList<String> directories =pullDirectoriesFromFolder(startingDirectory, fileExtensions);
-    if(startingDirectory.equals("./music")){
-      System.out.println(directories.get(0));
-    }
+    ArrayList<String> directories = pullDirectoriesFromFolder(startingDirectory, fileExtensions);
 		for(int i = 0; i < directories.size(); i++){
 			retVal.put(cleanFileName(directories.get(i)), directories.get(i));
 		}
