@@ -31,6 +31,7 @@ public abstract class Prop extends Physical{
 
   protected void selfDestruct(){
     stage.removePhysicalReferences(this);
+    toolBox.removePhysicalReferences(this);
   }
 
   protected ControllerInputHandler[] getControllers(){

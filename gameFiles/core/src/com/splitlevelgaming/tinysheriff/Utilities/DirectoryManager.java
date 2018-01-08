@@ -44,10 +44,7 @@ public class DirectoryManager{
 
   public Hashtable<String, String> createDirectoryHash(String startingDirectory, ArrayList<String> fileExtensions){
     Hashtable<String, String> retVal = new Hashtable<String, String>();
-    ArrayList<String> directories =pullDirectoriesFromFolder(startingDirectory, fileExtensions);
-    if(startingDirectory.equals("./music")){
-      System.out.println(directories.get(0));
-    }
+    ArrayList<String> directories = pullDirectoriesFromFolder(startingDirectory, fileExtensions);
 		for(int i = 0; i < directories.size(); i++){
 			retVal.put(cleanFileName(directories.get(i)), directories.get(i));
 		}
