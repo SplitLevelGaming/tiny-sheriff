@@ -47,7 +47,6 @@ public abstract class Stage extends Physical implements PhysicalReferencer{
 
   public void removePhysicalReferences(Physical physical){
     props.remove(physical);
-    toolBox.removePhysicalReferences(physical);
   }
 
   protected ControllerInputHandler[] getControllers(){
