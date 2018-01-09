@@ -1,0 +1,3 @@
+Rules for numbering:
+-Numbering animation sprites starts at 1
+-Never start a number for an animation sprite at 0. (Such as "walking_left_01" should be "walking_left_1")
