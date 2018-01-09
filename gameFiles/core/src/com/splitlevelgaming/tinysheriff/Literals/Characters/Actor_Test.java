@@ -2,9 +2,9 @@ package com.splitlevelgaming.tinysheriff;
 
 import com.badlogic.gdx.graphics.Texture;
 
-public class Character_Test extends Character{
+public class Actor_Test extends Actor{
 
-  Character_Test(Stage stage, int playerNumber, double x, double y, ToolBox toolBox){
+  Actor_Test(Stage stage, int playerNumber, double x, double y, ToolBox toolBox){
     super(stage, playerNumber, x, y, 3, 4.5, "img_sheriff", toolBox);
   }
 

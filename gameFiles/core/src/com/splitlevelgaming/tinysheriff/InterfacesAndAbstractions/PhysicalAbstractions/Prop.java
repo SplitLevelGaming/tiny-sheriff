@@ -93,6 +93,18 @@ public abstract class Prop extends Physical{
 
   }
 
+  protected void increaseActiveSprite(){
+    setActiveSprite(toolBox.getIncrementedTextureName(activeSprite));
+  }
+
+  protected void decreaseActiveSprite(){
+    setActiveSprite(toolBox.getDecrementedTextureName(activeSprite));
+  }
+
+  protected void setActiveSprite(String textureName){
+    activeSprite = textureName;
+  }
+
   public void timerEnd(String timerName){
 
   }

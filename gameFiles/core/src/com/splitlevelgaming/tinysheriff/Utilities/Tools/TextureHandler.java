@@ -104,6 +104,65 @@ public class TextureHandler{
 		return null;
 	}
 
+	private boolean hasTexture(String texture){
+		return getTexture(texture) != null;
+	}
+
+	private String getTextureNumberString(String textureName){
+		int startingIndex = getTextureNumberStartIndex(textureName);
+		return textureName.substring(startingIndex);
+	}
+
+	private String getTexturePrefixString(String textureName){
+		int startingIndex = getTextureNumberStartIndex(textureName);
+		return textureName.substring(0, startingIndex);
+	}
+
+	private int getTextureNumberStartIndex(String textureName){
+		int startingIndex = textureName.length();
+    while(Character.isDigit(textureName.charAt(startingIndex-1))){
+      startingIndex--;
+    }
+		return startingIndex;
+	}
+
+	public String getIncrementedTextureName(String textureName){
+    String prefix = getTexturePrefixString(textureName);
+    String suffix = getTextureNumberString(textureName);
+		if(suffix.length() == 0){
+			return textureName;
+		}
+    int textureNumber = Integer.parseInt(suffix);
+    textureNumber++;
+    if(hasTexture(prefix + textureNumber)){
+      return prefix + textureNumber;
+    }
+    else{
+      return prefix + "1";
+    }
+	}
+
+	public String getDecrementedTextureName(String textureName){
+		String prefix = getTexturePrefixString(textureName);
+    String suffix = getTextureNumberString(textureName);
+		if(suffix.length() == 0){
+			return textureName;
+		}
+    int textureNumber = Integer.parseInt(suffix);
+    textureNumber--;
+    if(hasTexture(prefix + textureNumber)){
+      return prefix + textureNumber;
+    }
+    else{
+			textureNumber++;
+			while(hasTexture(prefix + (textureNumber + 1))){
+				textureNumber++;
+			}
+      return prefix + textureNumber;
+    }
+	}
+
+
 	private Texture instantiateTexture(String textureName){
 		String directory = directoryKeyTable.get(textureName);
 		Texture retVal = new Texture(directory);

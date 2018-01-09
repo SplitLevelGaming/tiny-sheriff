@@ -42,6 +42,14 @@ public class ToolBox implements PhysicalReferencer{
     textureHandler.drawReversed(textureName, x, y, width, height);
   }
 
+  public String getIncrementedTextureName(String textureName){
+    return textureHandler.getIncrementedTextureName(textureName);
+  }
+
+  public String getDecrementedTextureName(String textureName){
+    return textureHandler.getDecrementedTextureName(textureName);
+  }
+
   public void playMusic(String musicName){
     musicHander.playMusic(musicName);
   }
