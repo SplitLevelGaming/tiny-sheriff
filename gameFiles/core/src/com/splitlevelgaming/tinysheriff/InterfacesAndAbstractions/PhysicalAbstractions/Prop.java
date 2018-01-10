@@ -11,6 +11,9 @@ public abstract class Prop extends Physical{
   protected double height;
   protected String activeSprite;
   protected ToolBox toolBox;
+  protected int animationThreshold = 1;
+  protected int animationStep = 0;
+  protected boolean animated = false;
 
   Prop(Stage stage, double x, double y, double width, double height, String activeSprite, ToolBox toolBox){
     this.stage = stage;
@@ -77,7 +80,11 @@ public abstract class Prop extends Physical{
 
   protected abstract void checkCollisions();
 
-  protected abstract void updateSprite();
+  protected void updateSprite(){
+    if(animated){
+      incrementAnimationStep();
+    }
+  }
 
   protected void render(){
     drawMe();
@@ -93,7 +100,19 @@ public abstract class Prop extends Physical{
 
   }
 
+  protected void incrementAnimationStep(){
+    animationStep++;
+    if(animationStep >= animationThreshold){
+      animationStep = 0;
+      increaseActiveSprite();
+    }
+  }
+
   protected void increaseActiveSprite(){
+    String newTextureName = toolBox.getIncrementedTextureName(activeSprite);
+    if(newTextureName.equals(activeSprite)){
+      System.out.println("Attempted to increment animation sprite " + activeSprite);
+    }
     setActiveSprite(toolBox.getIncrementedTextureName(activeSprite));
   }
 
@@ -103,6 +122,14 @@ public abstract class Prop extends Physical{
 
   protected void setActiveSprite(String textureName){
     activeSprite = textureName;
+  }
+
+  protected void setAnimationThreshold(int animationThreshold){
+    this.animationThreshold = animationThreshold;
+  }
+
+  protected void setAnimated(boolean animated){
+    this.animated = animated;
   }
 
   public void timerEnd(String timerName){
