@@ -1,22 +1,42 @@
 package com.splitlevelgaming.tinysheriff;
 
+import com.badlogic.gdx.controllers.Controller;
+import com.badlogic.gdx.controllers.Controllers;
+
 public class ToolBox implements PhysicalReferencer{
 
   private TextureHandler textureHandler;
   private MusicHandler musicHander;
   private SoundHandler soundHandler;
   private TimerController timerController;
+  private ControllerInputHandler[] controllers;
+
+  private boolean controllersHookedUp = true;
 
   public ToolBox(){
     musicHander = new MusicHandler();
     textureHandler = new TextureHandler();
     soundHandler = new SoundHandler();
     timerController = new TimerController();
+    controllers = new ControllerInputHandler[2];
+		try{
+			controllers[0] = new ControllerInputHandler(Controllers.getControllers().get(0));
+			controllers[1] = new ControllerInputHandler(Controllers.getControllers().get(1));
+		}
+		catch (Exception e) {
+			System.out.println("Please connect two controllers!");
+      controllersHookedUp = false;
+			//Gdx.app.exit();
+		}
   }
 
   public void startStep(){
     textureHandler.startStep();
     timerController.startStep();
+    if(controllersHookedUp)
+      for(int i = 0; i < controllers.length; i++){
+        controllers[i].refresh();
+      }
   }
 
   public void endStep(){
@@ -57,5 +77,9 @@ public class ToolBox implements PhysicalReferencer{
   public void setTimer(Prop calling, String code, int setTime){
     timerController.setTimer(calling, code, setTime);
   }
+
+  public ControllerInputHandler[] getControllers(){
+		return controllers;
+	}
 
 }
