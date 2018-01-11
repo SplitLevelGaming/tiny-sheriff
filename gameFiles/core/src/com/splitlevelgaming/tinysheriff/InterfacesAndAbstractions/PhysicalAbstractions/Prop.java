@@ -37,10 +37,6 @@ public abstract class Prop extends Physical{
     toolBox.removePhysicalReferences(this);
   }
 
-  protected ControllerInputHandler[] getControllers(){
-    return stage.getControllers();
-  }
-
   protected void addProp(Prop newProp){
     stage.addProp(newProp);
   }

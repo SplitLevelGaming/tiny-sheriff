@@ -17,7 +17,7 @@ public abstract class Actor extends Prop{
   }
 
   public ControllerInputHandler getPlayerController(){
-    return getControllers()[playerNumber - 1];
+    return toolBox.getControllers()[playerNumber - 1];
   }
 
   @Override

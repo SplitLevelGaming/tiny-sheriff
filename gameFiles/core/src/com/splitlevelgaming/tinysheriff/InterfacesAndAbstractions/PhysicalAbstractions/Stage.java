@@ -49,10 +49,6 @@ public abstract class Stage extends Physical implements PhysicalReferencer{
     props.remove(physical);
   }
 
-  protected ControllerInputHandler[] getControllers(){
-    return mainGame.getControllers();
-  }
-
   public boolean collidesWith(double x, double y, double width, double height, Class target){
     for(int i = 0; i < props.size(); i++){
       if(props.get(i).getClass() == target){
