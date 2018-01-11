@@ -26,7 +26,7 @@ public abstract class Stage extends Physical implements PhysicalReferencer{
   }
 
   protected void render(){
-    toolBox.draw(background, 0, 0, 32, 18);
+    toolBox.getTextureHandler().draw(background, 0, 0, 32, 18);
   }
 
   protected void update(){

@@ -87,12 +87,12 @@ public abstract class Prop extends Physical{
   }
 
   protected void drawMe(){
-    toolBox.draw(activeSprite, x, y, width, height);
+    toolBox.getTextureHandler().draw(activeSprite, x, y, width, height);
 
   }
 
   protected void drawMeReversed(){
-    toolBox.drawReversed(activeSprite, x, y, width, height);
+    toolBox.getTextureHandler().drawReversed(activeSprite, x, y, width, height);
 
   }
 
@@ -113,15 +113,15 @@ public abstract class Prop extends Physical{
   }
 
   protected void increaseActiveSprite(){
-    String newTextureName = toolBox.getIncrementedTextureName(activeSprite);
+    String newTextureName = toolBox.getTextureHandler().getIncrementedTextureName(activeSprite);
     if(newTextureName.equals(activeSprite)){
       System.out.println("Attempted to increment animation sprite " + activeSprite);
     }
-    setActiveSprite(toolBox.getIncrementedTextureName(activeSprite));
+    setActiveSprite(toolBox.getTextureHandler().getIncrementedTextureName(activeSprite));
   }
 
   protected void decreaseActiveSprite(){
-    setActiveSprite(toolBox.getDecrementedTextureName(activeSprite));
+    setActiveSprite(toolBox.getTextureHandler().getDecrementedTextureName(activeSprite));
   }
 
   protected void setActiveSprite(String textureName){

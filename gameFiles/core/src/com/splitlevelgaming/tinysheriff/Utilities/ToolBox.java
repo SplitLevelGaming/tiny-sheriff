@@ -54,28 +54,20 @@ public class ToolBox implements PhysicalReferencer{
     timerController.removePhysicalReferences(physical);
   }
 
-  public void draw(String textureName, double x, double y, double width, double height){
-    textureHandler.draw(textureName, x, y, width, height);
+  public TextureHandler getTextureHandler(){
+    return textureHandler;
   }
 
-  public void drawReversed(String textureName, double x, double y, double width, double height){
-    textureHandler.drawReversed(textureName, x, y, width, height);
+  public MusicHandler getMusicHandler(){
+    return musicHander;
   }
 
-  public String getIncrementedTextureName(String textureName){
-    return textureHandler.getIncrementedTextureName(textureName);
+  public SoundHandler getSoundHandler(){
+    return soundHandler;
   }
 
-  public String getDecrementedTextureName(String textureName){
-    return textureHandler.getDecrementedTextureName(textureName);
-  }
-
-  public void playMusic(String musicName){
-    musicHander.playMusic(musicName);
-  }
-
-  public void setTimer(Prop calling, String code, int setTime){
-    timerController.setTimer(calling, code, setTime);
+  public TimerController getTimerController(){
+    return timerController;
   }
 
   public ControllerInputHandler[] getControllers(){
