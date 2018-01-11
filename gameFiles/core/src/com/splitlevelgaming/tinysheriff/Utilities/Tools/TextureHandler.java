@@ -46,9 +46,6 @@ public class TextureHandler{
 		double blockHeight,
 		boolean flipx){
 			Texture texture = getTexture(textureName);
-			if(texture == null){
-				texture = instantiateTexture(textureName);
-			}
 			batch.draw(
 				texture,
 				(float) blockX * (float) pixelsPerBottomBlockside,
@@ -101,7 +98,7 @@ public class TextureHandler{
 				return textureTable.get(keys[i]);
 			}
 		}
-		return null;
+		return instantiateTexture(texture);
 	}
 
 	private boolean hasTexture(String texture){
@@ -165,8 +162,11 @@ public class TextureHandler{
 
 	private Texture instantiateTexture(String textureName){
 		String directory = directoryKeyTable.get(textureName);
-		Texture retVal = new Texture(directory);
-		textureTable.put(textureName, retVal);
+		Texture retVal= null;
+		if(directory != null){
+			retVal = new Texture(directory);
+			textureTable.put(textureName, retVal);
+		}
 		return retVal;
 	}
 

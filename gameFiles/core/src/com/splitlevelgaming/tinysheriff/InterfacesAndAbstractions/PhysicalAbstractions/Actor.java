@@ -3,6 +3,7 @@ package com.splitlevelgaming.tinysheriff;
 public abstract class Actor extends Prop{
 
   protected int playerNumber;
+  protected boolean imageMirrored = false;
 
   Actor(Stage stage, int playerNumber, double x, double y, double width, double height, String activeSprite, ToolBox toolBox){
     super(stage, x, y, width, height, activeSprite, toolBox);
@@ -17,6 +18,16 @@ public abstract class Actor extends Prop{
 
   public ControllerInputHandler getPlayerController(){
     return getControllers()[playerNumber - 1];
+  }
+
+  @Override
+  protected void render(){
+    if(!imageMirrored){
+      drawMe();
+    }
+    else{
+      drawMeReversed();
+    }
   }
 
 }
