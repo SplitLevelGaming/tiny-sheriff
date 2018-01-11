@@ -108,6 +108,14 @@ public abstract class Prop extends Physical{
     }
   }
 
+  protected void incrementAnimationStepBackwards(){
+    animationStep++;
+    if(animationStep >= animationThreshold){
+      animationStep = 0;
+      decreaseActiveSprite();
+    }
+  }
+
   protected void increaseActiveSprite(){
     String newTextureName = toolBox.getIncrementedTextureName(activeSprite);
     if(newTextureName.equals(activeSprite)){
