@@ -5,7 +5,7 @@ import com.badlogic.gdx.graphics.Texture;
 public class Actor_Test extends Actor{
 
   Actor_Test(Stage stage, int playerNumber, double x, double y, ToolBox toolBox){
-    super(stage, playerNumber, x, y, 3, 4.5, "img_test_walking_1", toolBox);
+    super(stage, playerNumber, x, y, 1.5, 3, "img_test_walking_1", toolBox);
   }
 
   @Override
@@ -15,7 +15,7 @@ public class Actor_Test extends Actor{
 
   @Override
   protected void update(){
-    ControllerInputHandler playerController = getPlayerController();
+    InputHandler playerController = getPlayerController();
     if(playerController != null){
       super.update();
     }
@@ -23,7 +23,7 @@ public class Actor_Test extends Actor{
 
   @Override
   protected void updateSprite(){
-    ControllerInputHandler playerController = getPlayerController();
+    InputHandler playerController = getPlayerController();
     if(playerController != null){
       if(playerController.getVerticalAxis() != 0 || playerController.getHorizontalAxis() != 0){
         setAnimationThreshold(10);
@@ -44,10 +44,10 @@ public class Actor_Test extends Actor{
       setAnimationThreshold(6);
       setAnimated(true);
       if(!imageMirrored){
-        x+=.2;
+        x+=.15;
       }
       else{
-        x-=.2;
+        x-=.15;
       }
       if(!imageMirrored && x+width > 32){
         imageMirrored = true;

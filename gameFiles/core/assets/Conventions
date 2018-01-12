@@ -5,3 +5,4 @@ Rules for numbering:
 
 Rules for sprites:
 -Must face right
+-The fake pixel resolution is 640 width and 360 height. Sprites should be made with these dimensions in mind.
