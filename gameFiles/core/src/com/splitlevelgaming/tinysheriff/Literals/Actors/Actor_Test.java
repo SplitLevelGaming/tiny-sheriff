@@ -29,15 +29,15 @@ public class Actor_Test extends Actor{
         setAnimationThreshold(10);
         setAnimated(true);
       }
+      else{
+        setActiveSprite("img_test_walking_1");
+        setAnimated(false);
+      }
       if(playerController.getHorizontalAxis() > 0){
         imageMirrored = false;
       }
       if(playerController.getHorizontalAxis() < 0){
         imageMirrored = true;
-      }
-      else{
-        setActiveSprite("img_test_walking_1");
-        setAnimated(false);
       }
     }
     else{

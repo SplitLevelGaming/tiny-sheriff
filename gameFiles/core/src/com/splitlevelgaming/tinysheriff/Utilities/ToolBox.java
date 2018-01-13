@@ -11,8 +11,6 @@ public class ToolBox implements PhysicalReferencer{
   private TimerController timerController;
   private InputHandler[] controllers;
 
-  private boolean controllersHookedUp = true;
-
   public ToolBox(){
     musicHander = new MusicHandler();
     textureHandler = new TextureHandler();
@@ -25,17 +23,14 @@ public class ToolBox implements PhysicalReferencer{
 		}
 		catch (Exception e) {
 			System.out.println("Please connect two controllers!");
-      controllersHookedUp = false;
-		}
+      controllers[0] = new KeyboardInputHandler();
+			controllers[1] = new KeyboardInputHandler();
+    }
   }
 
   public void startStep(){
     textureHandler.startStep();
     timerController.startStep();
-    if(controllersHookedUp)
-      for(int i = 0; i < controllers.length; i++){
-        controllers[i].refresh();
-      }
   }
 
   public void endStep(){
