@@ -9,34 +9,28 @@ public class ToolBox implements PhysicalReferencer{
   private MusicHandler musicHander;
   private SoundHandler soundHandler;
   private TimerController timerController;
-  private ControllerInputHandler[] controllers;
-
-  private boolean controllersHookedUp = true;
+  private InputHandler[] controllers;
 
   public ToolBox(){
     musicHander = new MusicHandler();
     textureHandler = new TextureHandler();
     soundHandler = new SoundHandler();
     timerController = new TimerController();
-    controllers = new ControllerInputHandler[2];
+    controllers = new InputHandler[2];
 		try{
 			controllers[0] = new ControllerInputHandler(Controllers.getControllers().get(0));
 			controllers[1] = new ControllerInputHandler(Controllers.getControllers().get(1));
 		}
 		catch (Exception e) {
 			System.out.println("Please connect two controllers!");
-      controllersHookedUp = false;
-			//Gdx.app.exit();
-		}
+      controllers[0] = new KeyboardInputHandler();
+			controllers[1] = new KeyboardInputHandler();
+    }
   }
 
   public void startStep(){
     textureHandler.startStep();
     timerController.startStep();
-    if(controllersHookedUp)
-      for(int i = 0; i < controllers.length; i++){
-        controllers[i].refresh();
-      }
   }
 
   public void endStep(){
@@ -70,8 +64,8 @@ public class ToolBox implements PhysicalReferencer{
     return timerController;
   }
 
-  public ControllerInputHandler[] getControllers(){
-		return controllers;
+  public InputHandler[] getControllers(){
+      return controllers;
 	}
 
 }

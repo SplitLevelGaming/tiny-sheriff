@@ -11,12 +11,12 @@ public abstract class Actor extends Prop{
   }
 
   protected void update(){
-    ControllerInputHandler playerController = getPlayerController();
+      InputHandler playerController = getPlayerController();
       y += .2*playerController.getVerticalAxis();
       x += .2*playerController.getHorizontalAxis();
   }
 
-  public ControllerInputHandler getPlayerController(){
+  public InputHandler getPlayerController(){
     return toolBox.getControllers()[playerNumber - 1];
   }
 
