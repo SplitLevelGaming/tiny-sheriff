@@ -15,6 +15,7 @@ public class Stage_Test extends Stage{
   @Override
   protected void loadInitialProps(){
     addProp(new Actor_Test(this, 1, 0, 0, toolBox));
+    addProp(new Actor_Test(this, 2, 5, 5, toolBox));
     toolBox.getMusicHandler().playMusic("music_testMusic");
   }
 

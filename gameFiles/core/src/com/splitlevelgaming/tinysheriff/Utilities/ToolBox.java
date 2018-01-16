@@ -1,5 +1,6 @@
 package com.splitlevelgaming.tinysheriff;
 
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.controllers.Controller;
 import com.badlogic.gdx.controllers.Controllers;
 
@@ -22,9 +23,16 @@ public class ToolBox implements PhysicalReferencer{
 			controllers[1] = new ControllerInputHandler(Controllers.getControllers().get(1));
 		}
 		catch (Exception e) {
-			System.out.println("Please connect two controllers!");
-      controllers[0] = new KeyboardInputHandler();
-			controllers[1] = new KeyboardInputHandler();
+      try{
+        controllers[0] = new KeyboardInputHandler();
+        controllers[1] = new ControllerInputHandler(Controllers.getControllers().get(0));
+        System.out.println("Please connect another controller!");
+      }
+      catch (Exception f){
+        controllers[0] = new KeyboardInputHandler();
+        controllers[1] = new KeyboardInputHandler(Input.Keys.U, Input.Keys.J, Input.Keys.H, Input.Keys.K, Input.Keys.I, Input.Keys.Y);
+        System.out.println("Please connect two controllers!");
+      }
     }
   }
 
