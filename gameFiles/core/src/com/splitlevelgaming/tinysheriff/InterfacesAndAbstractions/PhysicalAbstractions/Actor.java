@@ -4,6 +4,7 @@ public abstract class Actor extends Prop{
 
   protected int playerNumber;
   protected boolean imageMirrored = false;
+  protected double movementMultiplier = .15;
 
   Actor(Stage stage, int playerNumber, double x, double y, double width, double height, String activeSprite, ToolBox toolBox){
     super(stage, x, y, width, height, activeSprite, toolBox);
@@ -12,12 +13,16 @@ public abstract class Actor extends Prop{
 
   protected void update(){
       InputHandler playerController = getPlayerController();
-      y += .2*playerController.getVerticalAxis();
-      x += .2*playerController.getHorizontalAxis();
+      y += movementMultiplier*playerController.getVerticalAxis();
+      x += movementMultiplier*playerController.getHorizontalAxis();
   }
 
   public InputHandler getPlayerController(){
     return toolBox.getControllers()[playerNumber - 1];
+  }
+
+  protected void setMovementMultiplier(double multiplier){
+    movementMultiplier = multiplier;
   }
 
   @Override
