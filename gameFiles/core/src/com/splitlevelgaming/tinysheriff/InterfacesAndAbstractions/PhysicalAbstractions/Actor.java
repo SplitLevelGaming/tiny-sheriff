@@ -13,8 +13,12 @@ public abstract class Actor extends Prop{
 
   protected void update(){
       InputHandler playerController = getPlayerController();
-      y += movementMultiplier*playerController.getVerticalAxis();
-      x += movementMultiplier*playerController.getHorizontalAxis();
+      if(!collidesWith(x, y+movementMultiplier*playerController.getVerticalAxis(), Prop_Barrier.class)){
+        y += movementMultiplier*playerController.getVerticalAxis();
+      }
+      if(!collidesWith(x+movementMultiplier*playerController.getHorizontalAxis(), y, Prop_Barrier.class)){
+        x += movementMultiplier*playerController.getHorizontalAxis();
+      }
   }
 
   public InputHandler getPlayerController(){

@@ -15,14 +15,6 @@ public class Actor_Test extends Actor{
   }
 
   @Override
-  protected void update(){
-    InputHandler playerController = getPlayerController();
-    if(playerController != null){
-      super.update();
-    }
-  }
-
-  @Override
   protected void updateSprite(){
     InputHandler playerController = getPlayerController();
     if(playerController != null){
