@@ -14,6 +14,8 @@ public abstract class Prop extends Physical{
   protected int animationThreshold = 1;
   protected int animationStep = 0;
   protected boolean animated = false;
+  //Creates the illusion of depth
+  protected double collisionDepthHeightMultiplier = .5;
 
   Prop(Stage stage, double x, double y, double width, double height, String activeSprite, ToolBox toolBox){
     this.stage = stage;
@@ -41,23 +43,30 @@ public abstract class Prop extends Physical{
     stage.addProp(newProp);
   }
 
+  private boolean linesOverlap(double start1, double end1, double start2, double end2){
+    if(start1 == start2 || end1 == end2){
+      return true;
+    }
+    if((start1 > start2 && start1 < end2) || (end1 > start2 && end1 < end2)){
+      return true;
+    }
+    if(start2 > start1 && start2 < end1 || end2 > start1 && end2 < end1){
+      return true;
+    }
+    return false;
+  }
+
   public boolean intersects(double x, double y, double width, double height){
-    double bottom1 = x;
-    double bottom2 = this.x;
-    double left1 = y;
-    double left2 = this.y;
+    double bottom1 = y;
+    double bottom2 = this.y;
+    double left1 = x;
+    double left2 = this.x;
     double right1 = x + width;
     double right2 = this.x + this.width;
     double top1 = y + height;
-    double top2 = this.y + this.height;
-    if(left1 == left2 ||
-     right1 == right2 ||
-     (left1 < left2 && right1 > left2) ||
-     (left1 < right2 && left1 > left2)){
-      if(top1 == top2 ||
-       bottom1 == bottom2 ||
-       (top1 > top2 && bottom1 < top2) ||
-       (top1 > bottom2 && top1 < top2)){
+    double top2 = this.y + (collisionDepthHeightMultiplier * this.height);
+    if(linesOverlap(bottom1, top1, bottom2, top2)){
+      if(linesOverlap(left1, right1, left2, right2)){
         return true;
       }
     }
@@ -69,7 +78,7 @@ public abstract class Prop extends Physical{
   }
 
   protected boolean collidesWith(double x, double y, Class target){
-    return stage.collidesWith(x, y, this.width, this.height, target);
+    return stage.collidesWith(x, y, this.width, this.height * collisionDepthHeightMultiplier, target);
   }
 
   protected abstract void update();
@@ -138,6 +147,10 @@ public abstract class Prop extends Physical{
 
   public void timerEnd(String timerName){
 
+  }
+
+  public double getDepth(){
+    return y;
   }
 
 }

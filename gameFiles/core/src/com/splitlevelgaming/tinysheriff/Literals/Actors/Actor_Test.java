@@ -6,19 +6,12 @@ public class Actor_Test extends Actor{
 
   Actor_Test(Stage stage, int playerNumber, double x, double y, ToolBox toolBox){
     super(stage, playerNumber, x, y, 1.5, 3, "img_test_walking_1", toolBox);
+    setMovementMultiplier(.12);
   }
 
   @Override
   protected void checkCollisions(){
 
-  }
-
-  @Override
-  protected void update(){
-    InputHandler playerController = getPlayerController();
-    if(playerController != null){
-      super.update();
-    }
   }
 
   @Override
