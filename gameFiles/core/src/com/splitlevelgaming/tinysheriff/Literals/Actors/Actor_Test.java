@@ -5,8 +5,9 @@ import com.badlogic.gdx.graphics.Texture;
 public class Actor_Test extends Actor{
 
   Actor_Test(Stage stage, int playerNumber, double x, double y, ToolBox toolBox){
-    super(stage, playerNumber, x, y, 1.5, 3, "img_test_walking_1", toolBox);
+    super(stage, playerNumber, x, y, 1.25, 2, "img_test_walking_1", toolBox);
     setMovementMultiplier(.12);
+    collisionDepthHeightMultiplier = .5;
   }
 
   @Override

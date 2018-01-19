@@ -15,7 +15,7 @@ public abstract class Prop extends Physical{
   protected int animationStep = 0;
   protected boolean animated = false;
   //Creates the illusion of depth
-  protected double collisionDepthHeightMultiplier = .5;
+  protected double collisionDepthHeightMultiplier = 1;
 
   Prop(Stage stage, double x, double y, double width, double height, String activeSprite, ToolBox toolBox){
     this.stage = stage;

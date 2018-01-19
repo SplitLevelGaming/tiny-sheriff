@@ -17,6 +17,7 @@ public abstract class Stage extends Physical implements PhysicalReferencer{
     this.props = new ArrayList<Prop>();
     this.background = backgroundTextureName;
     loadOutsideWalls();
+    loadInnerWalls();
     loadInitialProps();
   }
 
@@ -46,7 +47,7 @@ public abstract class Stage extends Physical implements PhysicalReferencer{
   protected void sortProps(){
     for(int i = 0; i < props.size(); i++){
       int propIndex = 0;
-      double propDepth = 0;
+      double propDepth = -1;
       for(int j = i; j < props.size(); j++){
         if(props.get(j).getDepth() > propDepth){
           propIndex = j;
@@ -60,11 +61,14 @@ public abstract class Stage extends Physical implements PhysicalReferencer{
   }
 
   protected void loadOutsideWalls(){
-    addProp(new Prop_Barrier(this, -1, 0, 1, 18, "img_barrel", toolBox, false));
-    addProp(new Prop_Barrier(this, 32, 0, 1, 18, "img_barrel", toolBox, false));
-    addProp(new Prop_Barrier(this, -1, -1, 34, 1, "img_barrel", toolBox, false));
-    addProp(new Prop_Barrier(this, -1, 18, 34, 1, "img_barrel", toolBox, false));
+    //addProp(new Prop_Barrier(this, -1, 0, 1, 18, "img_null", toolBox, false));
+    addProp(new Prop_ArenaWall(this, -1, 0, 1, 18, toolBox));
+    addProp(new Prop_ArenaWall(this, 32, 0, 1, 18, toolBox));
+    addProp(new Prop_ArenaWall(this, -1, -1, 34, 1, toolBox));
+    addProp(new Prop_ArenaWall(this, -1, 18, 34, 1, toolBox));
   }
+
+  protected abstract void loadInnerWalls();
 
   protected void addProp(Prop newProp){
     props.add(props.size(), newProp);
@@ -76,7 +80,7 @@ public abstract class Stage extends Physical implements PhysicalReferencer{
 
   public boolean collidesWith(double x, double y, double width, double height, Class target){
     for(int i = 0; i < props.size(); i++){
-      if(props.get(i).getClass() == target){
+      if(target.isAssignableFrom(props.get(i).getClass())){
         if(props.get(i).intersects(x, y, width, height)){
           return true;
         }

@@ -14,17 +14,30 @@ public class Stage_Test extends Stage{
 
   @Override
   protected void loadInitialProps(){
-    addProp(new Actor_Test(this, 1, 0, 0, toolBox));
-    addProp(new Actor_Test(this, 2, 30.5, 0, toolBox));
-    addProp(new Prop_Barrier(this, 5, 5, 2, 2, "img_barrel", toolBox, true));
-    addProp(new Prop_Barrier(this, 10, 5, 2, 2, "img_barrel", toolBox, true));
-    addProp(new Prop_Barrier(this, 10, 10, 2, 2, "img_barrel", toolBox, true));
+    addProp(new Actor_Test(this, 1, 2, 2, toolBox));
+    addProp(new Actor_Test(this, 2, 28.5, 2, toolBox));
+    addProp(new Prop_Barrel(this, 5, 5, toolBox));
+    addProp(new Prop_Barrel(this, 10, 5, toolBox));
+    addProp(new Prop_Barrel(this, 10, 10, toolBox));
     toolBox.getMusicHandler().playMusic("music_testMusic");
   }
 
   @Override
   protected void update(){
 
+  }
+
+  @Override
+  protected void loadInnerWalls(){
+    for(double i = 0; i < 16; i += 1.25){
+      addProp(new Prop_Barrel(this, 0, i, toolBox));
+      addProp(new Prop_Barrel(this, 30.55, i, toolBox));
+    }
+    for(double i = 0; i < 32; i += 1.8){
+      if(i+1.8 < 32)
+        addProp(new Prop_Barrel(this, i, 0, toolBox));
+      addProp(new Prop_Barrel(this, i, 16, toolBox));
+    }
   }
 
   @Override
